@@ -1,4 +1,3 @@
-// ==================== 15 QUOTES TRUYỀN ĐỘNG LỰC ====================
 const integratedQuotes = [
   {
     quote: "Trưởng thành là khi ta nhận ra rằng, đôi khi im lặng cũng là một lời giải thích.",
@@ -74,7 +73,7 @@ const integratedQuotes = [
   }
 ];
 
-// ==================== CODE CHÍNH ====================
+
 let isJarClickable = true;
 let lastQuoteIndex = -1; 
 let isMusicPlaying = false; 
@@ -90,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bgMusic'); 
 
   const allStarImages = [
-    'images/sao-1.png', 'images/sao-2.png', 'images/sao-3.png',
-    'images/sao-4.png', 'images/sao-5.png', 'images/sao-6.png'
+    'sao-1.png', 'sao-2.png', 'sao-3.png',
+    'sao-4.png', 'sao-5.png', 'sao-6.png'
   ];
 
   jar.addEventListener('click', () => {
@@ -166,12 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 });
 
-// HÀM CẬP NHẬT GIAO DIỆN CHÒM SAO
+
 function updateConstellation() {
     const count = litStars.length;
     document.getElementById('starCount').textContent = count;
 
-    // Lặp qua mảng và bật đèn cho các sao đã thu thập
+    
     litStars.forEach(index => {
         const starNode = document.getElementById(`star-node-${index}`);
         if (starNode) {
@@ -179,7 +178,7 @@ function updateConstellation() {
         }
     });
 
-    // KHI ĐÃ THẮP ĐỦ 12 SAO -> HIỆN THÔNG ĐIỆP CHÚC MỪNG SINH NHẬT
+    
     if (count === 12) {
         document.getElementById('starCountText').innerHTML = 
             `<span class="completed-msg">
