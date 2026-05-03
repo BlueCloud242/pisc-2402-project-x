@@ -6,7 +6,7 @@
   <title>Vườn Sao Băng Gửi Cậu</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <!-- Thêm font chữ hoạt họa cute -->
+  
   <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,19 +15,19 @@
     <p class="subtitle">Dù ở đâu, tụi mình cũng đang ngắm chung một bầu trời</p>
 
     <div id="jar" class="jar">
-      <img id="jarImage" src="images/hu-sao.png" alt="Hũ Sao" class="jar-img">
+      <img id="jarImage" src="hu-sao.png" alt="Hũ Sao" class="jar-img">
     </div>
 
-    <!-- GÓC DƯỚI PHẢI: BẢN ĐỒ CHÒM SAO SONG NGƯ -->
+    
     <div class="constellation-wrapper">
       
       <svg viewBox="0 0 300 200" class="pisces-svg">
-        <!-- Các đường nối giữa các vì sao -->
+        
         <polyline class="pisces-line" points="40,50 20,70 50,90 70,60 40,50" />
         <polyline class="pisces-line" points="70,60 100,100 120,130 150,160" />
         <polyline class="pisces-line" points="150,160 180,120 210,90 240,60 270,40 250,20" />
 
-        <!-- 12 Ngôi sao tương ứng với 12 Quotes -->
+       
         <circle id="star-node-0" class="pisces-star" cx="40" cy="50" r="4"/>
         <circle id="star-node-1" class="pisces-star" cx="20" cy="70" r="4"/>
         <circle id="star-node-2" class="pisces-star" cx="50" cy="90" r="4"/>
@@ -47,19 +47,18 @@
       </p>
     </div>
 
-    <!-- 3 Ngôi sao rơi -->
+    
     <div id="starsContainer" class="stars-container hidden"></div>
 
-    <!-- Popup mới -->
-    <!-- Khu vực Lật Thẻ 3D -->
+    
     <div id="flip-overlay">
       <div class="flip-card">
         <div class="flip-card-inner" id="flipCardInner">
           
-          <!-- Mặt trước: Sẽ hiển thị hình ngôi sao to đùng -->
+          
           <div class="flip-card-front" id="flipCardFront"></div>
 
-          <!-- Mặt sau: Giao diện Sổ lưu bút -->
+          
           <div class="flip-card-back">
             <button class="close-btn" onclick="closeFlipCard()">
               <i class="fas fa-times"></i>
@@ -81,7 +80,7 @@
     </div>
   </div>
 
-  <!-- Trình phát nhạc ẩn -->
+  
     <audio id="bgMusic" loop>
         <source src="nhac-nen.mp3" type="audio/mpeg">
     </audio>
