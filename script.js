@@ -78,11 +78,11 @@ let isJarClickable = true;
 let lastQuoteIndex = -1; 
 let isMusicPlaying = false; 
 
-// Lấy dữ liệu các sao đã sáng từ Local Storage (để F5 không bị mất)
+
 let litStars = JSON.parse(localStorage.getItem('piscesLitStars')) || [];
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateConstellation(); // Cập nhật chòm sao ngay khi tải trang
+  updateConstellation(); 
 
   const jar = document.getElementById('jar');
   const starsContainer = document.getElementById('starsContainer');
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('movieInfo').textContent = `— ${item.character}, ${item.movie}`;
     document.getElementById('personalMessage').textContent = item.personal;
 
-    // THẮP SÁNG NGÔI SAO TRONG CHÒM SONG NGƯ
+    
     if (!litStars.includes(randomQuoteIndex)) {
         litStars.push(randomQuoteIndex);
         localStorage.setItem('piscesLitStars', JSON.stringify(litStars));
