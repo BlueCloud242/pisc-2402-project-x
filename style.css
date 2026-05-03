@@ -1,0 +1,313 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  /* Bạn nhớ sửa link ảnh nền nếu cần nhé */
+  background: url('https://i.pinimg.com/1200x/15/44/f4/1544f47f14a2c56868ed825c800d7e15.jpg') center/cover fixed no-repeat;
+  min-height: 100vh;
+  font-family: 'Mali', cursive; 
+  color: #5d4037;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 3.2rem; 
+  font-weight: 800;
+  color: #ff4757; 
+  text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 4px 4px 10px rgba(255, 71, 87, 0.5);
+  margin-bottom: 15px;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: #2f3542; 
+  background: rgba(255, 255, 255, 0.95);
+  display: inline-block;
+  padding: 12px 40px;
+  border-radius: 30px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 2px dashed #ff7f50; 
+  width: auto;
+}
+
+.jar {
+  width: 440px; 
+  height: 540px; 
+  margin: 0 auto 10px;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.jar:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.jar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.35));
+}
+
+.stars-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 0px;
+}
+
+.star {
+  width: 300px; 
+  height: 300px;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.8)) drop-shadow(0 15px 15px rgba(0,0,0,0.4));
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.star:hover {
+  transform: scale(1.2) rotate(15deg) !important;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)) drop-shadow(0 20px 20px rgba(0,0,0,0.5));
+}
+
+.falling {
+  animation: fall 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fall {
+  from { transform: translateY(-500px) rotate(-180deg); opacity: 0; }
+  to   { transform: translateY(0) rotate(10deg); opacity: 1; }
+}
+
+/* =========================================
+   HIỆU ỨNG LẬT 3D (3D FLIP CARD)
+   ========================================= */
+#flip-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 15, 30, 0.7); /* Nền tối lại để làm nổi bật ngôi sao */
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  /* Ẩn/hiện mượt mà */
+  opacity: 0; 
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#flip-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.flip-card {
+  width: 90%;
+  max-width: 420px;
+  height: 520px; 
+  perspective: 1200px; /* Tạo chiều sâu không gian 3D */
+}
+
+.flip-card-inner {
+  width: 100%; height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  transform-style: preserve-3d; 
+}
+
+/* Kích hoạt lật */
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%; height: 100%;
+  backface-visibility: hidden; 
+  border-radius: 20px;
+}
+
+/* Mặt trước: Ngôi sao */
+.flip-card-front {
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+  animation: floatFront 3s ease-in-out infinite; 
+}
+
+@keyframes floatFront {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Mặt sau: Giao diện Sổ lưu bút */
+.flip-card-back {
+  background: #fffdf9;
+  transform: rotateY(180deg); 
+  padding: 45px 20px 20px; /* Giảm padding một chút để rộng chỗ hơn */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 8px rgba(255, 255, 255, 0.6);
+  border: 2px solid #ffe4e1;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; /* Đổi từ center sang flex-start để bắt đầu từ trên cùng */
+  overflow-y: auto; /* TỰ ĐỘNG HIỆN THANH CUỘN KHI CHỮ QUÁ DÀI */
+  scrollbar-width: thin; /* Làm thanh cuộn nhỏ gọn (cho Firefox) */
+  scrollbar-color: #ffb8b8 transparent;
+}
+
+.flip-card-back::before {
+  content: ''; position: absolute; top: -12px; left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 130px; height: 35px; background: rgba(255, 184, 184, 0.8);
+  backdrop-filter: blur(4px); border-radius: 3px; z-index: 2;
+}
+
+.quote-box {
+  background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+  border-radius: 18px; padding: 30px 15px 15px; position: relative;
+  margin-bottom: 20px; text-align: center;
+}
+
+.quote-icon {
+  position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+  background: #ff6b81; color: white; width: 45px; height: 45px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  border: 3px solid #fff;
+}
+
+.quote-label {
+  font-size: 0.9rem;
+  color: #ff6b81;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.quote-text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #5d4037;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.movie-info {
+  color: #e17055;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.message-box {
+  background: transparent; border: 2px dashed #ffb8b8; border-radius: 15px;
+  padding: 20px 15px 15px; position: relative;
+}
+
+.message-box::before {
+  content: '💌 Lời nhắn gửi cậu'; position: absolute; top: -14px; left: 50%;
+  transform: translateX(-50%); background: #fffdf9; padding: 0 15px;
+  color: #ff9f43; font-weight: 700; font-size: 1.1rem; white-space: nowrap;
+}
+
+.personal-text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #e55039;
+  font-weight: 600;
+}
+
+.close-btn {
+  position: absolute; top: 15px; right: 20px; background: transparent;
+  border: none; font-size: 24px; color: #ffb8b8; cursor: pointer; z-index: 3;
+}
+.close-btn:hover { color: #ff6b81; transform: scale(1.1); }
+.hidden { display: none !important; }
+
+
+/* =========================================
+   GIAO DIỆN BẢN ĐỒ SAO (GHIM GÓC DƯỚI PHẢI)
+   ========================================= */
+.constellation-wrapper {
+  position: fixed;     
+  right: 30px;         
+  bottom: 30px;        
+  z-index: 50;         
+  
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85); 
+  border: 2px dashed #a29bfe;
+  border-radius: 20px;
+  padding: 15px 20px;
+  width: 280px;        
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15); 
+  transition: transform 0.3s ease;
+}
+
+.constellation-wrapper:hover {
+  transform: translateY(-8px);
+}
+
+.zodiac-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 800;
+  color: #0984e3;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.pisces-svg {
+  width: 100%;
+  height: auto;
+  max-width: 240px;
+  overflow: visible;
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+}
+
+.pisces-line {
+  fill: none;
+  stroke: #b2bec3;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5; 
+}
+
+.pisces-star {
+  fill: #dfe6e9; 
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.pisces-star.glow {
+  fill: #ffeaa7;
+  r: 7; 
+  filter: drop-shadow(0 0 10px #fdcb6e) drop-shadow(0 0 20px #ff7675);
+}
+
+.star-count-text {
+  font-size: 0.95rem;
+  color: #2d3436;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.completed-msg {
+  color: #d63031;
+  font-size: 1rem;
+  line-height: 1.5;
+  animation: pulseText 2s infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); color: #0984e3; }
+}

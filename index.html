@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vườn Sao Băng Gửi Cậu</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- Thêm font chữ hoạt họa cute -->
+  <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">✨ Dưới Cùng Một Bầu Trời ✨</h1>
+    <p class="subtitle">Dù ở đâu, tụi mình cũng đang ngắm chung một bầu trời</p>
+
+    <div id="jar" class="jar">
+      <img id="jarImage" src="images/hu-sao.png" alt="Hũ Sao" class="jar-img">
+    </div>
+
+    <!-- GÓC DƯỚI PHẢI: BẢN ĐỒ CHÒM SAO SONG NGƯ -->
+    <div class="constellation-wrapper">
+      
+      <svg viewBox="0 0 300 200" class="pisces-svg">
+        <!-- Các đường nối giữa các vì sao -->
+        <polyline class="pisces-line" points="40,50 20,70 50,90 70,60 40,50" />
+        <polyline class="pisces-line" points="70,60 100,100 120,130 150,160" />
+        <polyline class="pisces-line" points="150,160 180,120 210,90 240,60 270,40 250,20" />
+
+        <!-- 12 Ngôi sao tương ứng với 12 Quotes -->
+        <circle id="star-node-0" class="pisces-star" cx="40" cy="50" r="4"/>
+        <circle id="star-node-1" class="pisces-star" cx="20" cy="70" r="4"/>
+        <circle id="star-node-2" class="pisces-star" cx="50" cy="90" r="4"/>
+        <circle id="star-node-3" class="pisces-star" cx="70" cy="60" r="4"/>
+        <circle id="star-node-4" class="pisces-star" cx="100" cy="100" r="4"/>
+        <circle id="star-node-5" class="pisces-star" cx="120" cy="130" r="4"/>
+        <circle id="star-node-6" class="pisces-star" cx="150" cy="160" r="4"/> 
+        <circle id="star-node-7" class="pisces-star" cx="180" cy="120" r="4"/>
+        <circle id="star-node-8" class="pisces-star" cx="210" cy="90" r="4"/>
+        <circle id="star-node-9" class="pisces-star" cx="240" cy="60" r="4"/>
+        <circle id="star-node-10" class="pisces-star" cx="270" cy="40" r="4"/>
+        <circle id="star-node-11" class="pisces-star" cx="250" cy="20" r="4"/>
+      </svg>
+
+      <p id="starCountText" class="star-count-text">
+        Đã thắp sáng <span id="starCount">0</span>/12 ngôi sao ✨
+      </p>
+    </div>
+
+    <!-- 3 Ngôi sao rơi -->
+    <div id="starsContainer" class="stars-container hidden"></div>
+
+    <!-- Popup mới -->
+    <!-- Khu vực Lật Thẻ 3D -->
+    <div id="flip-overlay">
+      <div class="flip-card">
+        <div class="flip-card-inner" id="flipCardInner">
+          
+          <!-- Mặt trước: Sẽ hiển thị hình ngôi sao to đùng -->
+          <div class="flip-card-front" id="flipCardFront"></div>
+
+          <!-- Mặt sau: Giao diện Sổ lưu bút -->
+          <div class="flip-card-back">
+            <button class="close-btn" onclick="closeFlipCard()">
+              <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="quote-box">
+              <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+              <p id="movieQuote" class="quote-text"></p>
+              <p id="movieInfo" class="movie-info"></p>
+            </div>
+
+            <div class="message-box">
+              <p id="personalMessage" class="personal-text"></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trình phát nhạc ẩn -->
+    <audio id="bgMusic" loop>
+        <source src="nhac-nen.mp3" type="audio/mpeg">
+    </audio>
+  <script src="script.js"></script>
+</body>
+</html>
